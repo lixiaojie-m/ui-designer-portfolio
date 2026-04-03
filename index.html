@@ -203,34 +203,21 @@
       width: 100%;
       max-width: 500px;
       aspect-ratio: 3/4;
-      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+      background: #0a0a0a;
       position: relative;
       overflow: hidden;
     }
 
-    .hero-visual::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, transparent 49.5%, var(--border) 49.5%, var(--border) 50.5%, transparent 50.5%),
-        linear-gradient(0deg, transparent 49.5%, var(--border) 49.5%, var(--border) 50.5%, transparent 50.5%);
-      background-size: 60px 60px;
-      opacity: 0.3;
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+      transition: transform 0.6s ease;
     }
 
-    .hero-visual::after {
-      content: 'UI/UX';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--serif);
-      font-size: 5rem;
-      font-weight: 700;
-      color: white;
-      opacity: 0.1;
-      white-space: nowrap;
+    .hero-visual:hover img {
+      transform: scale(1.03);
     }
 
     .floating-tag {
@@ -530,16 +517,29 @@
 
     .work-visual {
       aspect-ratio: 16/10;
-      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      background: #0a0a0a;
       position: relative;
       overflow: hidden;
+    }
+
+    .work-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .work-item:hover .work-visual img {
+      transform: scale(1.05);
+      filter: brightness(0.7);
     }
 
     .work-visual::before {
       content: '';
       position: absolute;
       inset: 20%;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.05);
+      pointer-events: none;
     }
 
     .work-overlay {
@@ -749,6 +749,7 @@
     </div>
     <div class="hero-right">
       <div class="hero-visual">
+        <img src="images/hero-visual.svg" alt="UI Designer">
         <span class="floating-tag">Figma</span>
         <span class="floating-tag">原型设计</span>
         <span class="floating-tag">用户研究</span>
@@ -943,6 +944,7 @@
     <div class="works-grid">
       <div class="work-item reveal">
         <div class="work-visual">
+          <img src="images/work-ecommerce.svg" alt="电商购物体验重构">
           <div class="work-overlay">
             <span class="work-overlay-title">查看详情</span>
             <span class="work-overlay-cat">App Design</span>
@@ -955,7 +957,8 @@
       </div>
 
       <div class="work-item reveal">
-        <div class="work-visual" style="background: linear-gradient(135deg, #2a1a3a, #1a1a2a);">
+        <div class="work-visual">
+          <img src="images/work-designsystem.svg" alt="企业级设计系统">
           <div class="work-overlay">
             <span class="work-overlay-title">查看详情</span>
             <span class="work-overlay-cat">Design System</span>
@@ -968,7 +971,8 @@
       </div>
 
       <div class="work-item reveal">
-        <div class="work-visual" style="background: linear-gradient(135deg, #1a2a3a, #0a1a2a);">
+        <div class="work-visual">
+          <img src="images/work-finance.svg" alt="金融服务平台">
           <div class="work-overlay">
             <span class="work-overlay-title">查看详情</span>
             <span class="work-overlay-cat">Web Design</span>
@@ -981,7 +985,8 @@
       </div>
 
       <div class="work-item reveal">
-        <div class="work-visual" style="background: linear-gradient(135deg, #3a2a1a, #2a1a0a);">
+        <div class="work-visual">
+          <img src="images/work-branding.svg" alt="品牌视觉升级">
           <div class="work-overlay">
             <span class="work-overlay-title">查看详情</span>
             <span class="work-overlay-cat">Branding</span>
