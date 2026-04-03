@@ -599,9 +599,61 @@
       object-fit: cover;
       border-radius: 12px;
       transition: transform 0.3s;
+      cursor: pointer;
     }
 
     .media-scroll img:hover { transform: scale(1.05); }
+
+    .case-images {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding: 0 2.5rem 2rem;
+    }
+
+    .case-images img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .case-images img:hover { transform: scale(1.03); }
+
+    .case-images.single img {
+      grid-column: 1 / -1;
+      max-height: 360px;
+      object-fit: contain;
+      background: #f9fafb;
+    }
+
+    .case-images.two img:first-child {
+      grid-column: 1 / 3;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .lightbox.show { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
 
     /* === DATA === */
     .data-section { background: var(--fg); color: white; }
@@ -711,6 +763,7 @@
       .work-case-body { grid-template-columns: 1fr; }
       .data-grid { grid-template-columns: repeat(2, 1fr); }
       .media-scroll { grid-template-columns: repeat(3, 1fr); }
+      .case-images { grid-template-columns: repeat(2, 1fr); }
       nav { padding: 1.5rem 2rem; }
       section { padding: 4rem 2rem; }
     }
@@ -720,6 +773,7 @@
       .stat-grid { grid-template-columns: 1fr; }
       .data-grid { grid-template-columns: 1fr; }
       .media-scroll { grid-template-columns: repeat(2, 1fr); }
+      .case-images { grid-template-columns: 1fr; }
     }
 
     /* Reveal */
@@ -1003,6 +1057,11 @@
             <div class="result-item"><span>品牌管理体系</span><span class="val">集团化标准化</span></div>
           </div>
         </div>
+        <div class="case-images">
+          <img src="images/知贝VI.png" alt="知贝医疗VI设计">
+          <img src="images/知贝VI2.png" alt="知贝医疗VI系统">
+          <img src="images/均瑶PPT.png" alt="均瑶医疗品牌战略PPT">
+        </div>
       </div>
 
       <div class="work-case reveal">
@@ -1025,6 +1084,11 @@
             <div class="result-item"><span>内容曝光提升</span><span class="val">+158%</span></div>
             <div class="result-item"><span>年均线下引流</span><span class="val">2W+ 名客户</span></div>
           </div>
+        </div>
+        <div class="case-images">
+          <img src="images/知贝视频号.png" alt="知贝医疗视频号">
+          <img src="images/健高视频号.png" alt="健高儿科视频号">
+          <img src="images/健高知贝宣传册.png" alt="宣传物料">
         </div>
       </div>
 
@@ -1049,6 +1113,10 @@
             <div class="result-item"><span>活动报道阅读量</span><span class="val">20W+</span></div>
           </div>
         </div>
+        <div class="case-images two">
+          <img src="images/健康启航 瑶望未来健高公益行走进河北保定北龙化小学.png" alt="公益行活动">
+          <img src="images/健康启航 瑶望未来健高公益行走进河北保定北龙化小学2.png" alt="公益行现场">
+        </div>
       </div>
 
       <div class="work-case reveal">
@@ -1070,6 +1138,10 @@
             <div class="result-item"><span>线下参与家庭</span><span class="val">1,000+组</span></div>
             <div class="result-item"><span>咨询量增长</span><span class="val">+40%</span></div>
           </div>
+        </div>
+        <div class="case-images two">
+          <img src="images/为成长护航，健高儿科闪耀上海儿童健康展1.png" alt="上海儿童健康展">
+          <img src="images/为成长护航，健高儿科闪耀上海儿童健康展2.png" alt="健康展现场">
         </div>
       </div>
 
@@ -1093,6 +1165,9 @@
             <div class="result-item"><span>创造收入</span><span class="val">10W+元</span></div>
           </div>
         </div>
+        <div class="case-images">
+          <img src="images/健高PPT.png" alt="健高儿科营销PPT">
+        </div>
       </div>
     </div>
   </section>
@@ -1105,14 +1180,18 @@
       <p class="section-desc">企业资讯、品牌活动、医生专访、学术交流、科普文章等多维度内容输出</p>
     </div>
     <div class="media-scroll reveal">
-      <img src="https://picsum.photos/seed/medical1/400/400" alt="品牌活动">
-      <img src="https://picsum.photos/seed/medical2/400/400" alt="医生专访">
-      <img src="https://picsum.photos/seed/medical3/400/400" alt="学术交流">
-      <img src="https://picsum.photos/seed/medical4/400/400" alt="公益活动">
-      <img src="https://picsum.photos/seed/medical5/400/400" alt="品牌传播">
-      <img src="https://picsum.photos/seed/medical6/400/400" alt="线下活动">
-      <img src="https://picsum.photos/seed/medical7/400/400" alt="科普内容">
-      <img src="https://picsum.photos/seed/medical8/400/400" alt="品牌设计">
+      <img src="images/聚焦行业趋势打造优质医疗均瑶医疗举办行业专家战略沟通会.png" alt="行业专家战略沟通会">
+      <img src="images/均瑶医疗走进上海世外幼教集团!医教协同，全方位筑起儿童成长保护伞.png" alt="世外幼教集团合作">
+      <img src="images/佛山门诊李娜医生升级二胎妈妈，那些想和你说的心里话.png" alt="医生专访">
+      <img src="images/手里有粮，心里不慌--对话科普大赛获奖医生李志标、梁洁芳.png" alt="科普大赛获奖医生">
+      <img src="images/专业解读创新发展小儿内分泌遗传代谢专家学术交流讲座.png" alt="学术交流讲座">
+      <img src="images/资源整合，协同创新深化过敏专科建设，健高儿科获两项授牌.png" alt="过敏专科建设授牌">
+      <img src="images/这种儿童餐具重金属都易超标家长速查.png" alt="科普文章">
+      <img src="images/最脏的水果吃法医生几乎不碰小朋友却尤其喜欢.png" alt="科普文章">
+      <img src="images/这款全网杀疯了的零食医生提醒孩子千万别乱吃.png" alt="科普文章">
+      <img src="images/美林开封1个月后就得扔这份家庭常用药变质信号请收.png" alt="科普文章">
+      <img src="images/知贝视频号2.png" alt="知贝视频号">
+      <img src="images/健高视频号2.png" alt="健高视频号">
     </div>
   </section>
 
