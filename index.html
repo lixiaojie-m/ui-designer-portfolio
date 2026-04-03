@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Designer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafafa;
+      --fg: #0a0a0a;
+      --muted: #6b6b6b;
+      --accent: #ff3d00;
+      --card: #ffffff;
+      --border: #e5e5e5;
+      --serif: 'Playfair Display', Georgia, serif;
+      --mono: 'Space Mono', 'Courier New', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--mono);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.7;
+      font-size: 14px;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* Custom Cursor */
+    body {
+      cursor: none;
+    }
+
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--fg);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, background 0.15s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor.hover {
+      transform: translate(-50%, -50%) scale(2);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: linear-gradient(to bottom, var(--bg) 60%, transparent);
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--fg);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 4rem;
+    }
+
+    .hero-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 400;
+      line-height: 0.95;
+      margin-bottom: 3rem;
+    }
+
+    .hero-title span {
+      display: block;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: revealText 0.8s ease forwards;
+    }
+
+    .hero-title span:nth-child(2) {
+      animation-delay: 0.15s;
+      margin-left: 2rem;
+    }
+
+    .hero-title span:nth-child(3) {
+      animation-delay: 0.3s;
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    @keyframes revealText {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 400px;
+      line-height: 1.9;
+      opacity: 0;
+      animation: fadeIn 0.8s ease 0.6s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-visual {
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 49.5%, var(--border) 49.5%, var(--border) 50.5%, transparent 50.5%),
+        linear-gradient(0deg, transparent 49.5%, var(--border) 49.5%, var(--border) 50.5%, transparent 50.5%);
+      background-size: 60px 60px;
+      opacity: 0.3;
+    }
+
+    .hero-visual::after {
+      content: 'UI/UX';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--serif);
+      font-size: 5rem;
+      font-weight: 700;
+      color: white;
+      opacity: 0.1;
+      white-space: nowrap;
+    }
+
+    .floating-tag {
+      position: absolute;
+      padding: 0.75rem 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .floating-tag:nth-child(1) {
+      top: 20%;
+      right: -20px;
+      animation-delay: 0s;
+    }
+
+    .floating-tag:nth-child(2) {
+      bottom: 30%;
+      left: -30px;
+      animation-delay: 1s;
+    }
+
+    .floating-tag:nth-child(3) {
+      bottom: 10%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 4rem;
+      left: 4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    .scroll-line {
+      width: 60px;
+      height: 1px;
+      background: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 100%;
+      background: var(--accent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0% { left: -20px; }
+      100% { left: 100%; }
+    }
+
+    /* Section Common */
+    section {
+      padding: 8rem 4rem;
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 6rem;
+    }
+
+    .section-number {
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.3em;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+    }
+
+    /* About Section */
+    .about {
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 2;
+      opacity: 0.8;
+    }
+
+    .about-text strong {
+      color: white;
+      opacity: 1;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+
+    .stat-item {
+      border-left: 1px solid rgba(255,255,255,0.2);
+      padding-left: 2rem;
+    }
+
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      opacity: 0.5;
+    }
+
+    /* Experience Section */
+    .experience-timeline {
+      position: relative;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .experience-item {
+      padding-left: 4rem;
+      padding-bottom: 4rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .experience-item:last-child {
+      border-bottom: none;
+    }
+
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 0;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .experience-company {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .experience-date {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    .experience-role {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .experience-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 600px;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .skill-card {
+      padding: 3rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .skill-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    .skill-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-name {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .skill-tags {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      padding: 0.3rem 0.8rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Works Section */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+
+    .work-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .work-visual {
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .work-visual::before {
+      content: '';
+      position: absolute;
+      inset: 20%;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,10,0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .work-item:hover .work-overlay {
+      opacity: 1;
+    }
+
+    .work-overlay-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .work-overlay-cat {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+    }
+
+    .work-info {
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .work-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+    }
+
+    .work-year {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--fg);
+      color: var(--bg);
+      text-align: center;
+    }
+
+    .contact-title {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin-bottom: 2rem;
+    }
+
+    .contact-email {
+      font-size: 1.2rem;
+      color: var(--accent);
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+    }
+
+    .contact-email::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .contact-socials {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .contact-socials a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: color 0.3s ease;
+    }
+
+    .contact-socials a:hover {
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 6rem 2rem;
+      }
+
+      .hero-left {
+        padding-right: 0;
+        margin-bottom: 4rem;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .works-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        padding: 1.5rem 2rem;
+      }
+
+      section {
+        padding: 4rem 2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .cursor {
+        display: none;
+      }
+
+      body {
+        cursor: auto;
+      }
+    }
+
+    /* Animation on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+
+  <nav>
+    <div class="logo">Portfolio</div>
+    <ul class="nav-links">
+      <li><a href="#about">关于</a></li>
+      <li><a href="#experience">经历</a></li>
+      <li><a href="#skills">能力</a></li>
+      <li><a href="#works">作品</a></li>
+      <li><a href="#contact">联系</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <span class="hero-label">UI/UX Designer & Creative Thinker</span>
+      <h1 class="hero-title">
+        <span>设计</span>
+        <span>创造</span>
+        <span>体验</span>
+      </h1>
+      <p class="hero-desc">
+        专注于数字产品体验设计，相信好的设计是解决问题的艺术。
+        在功能与美学之间寻找平衡，让每一次交互都充满意义。
+      </p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual">
+        <span class="floating-tag">Figma</span>
+        <span class="floating-tag">原型设计</span>
+        <span class="floating-tag">用户研究</span>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>向下滚动探索</span>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">关于我</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        我是一名拥有<strong>8年经验</strong>的UI/UX设计师，
+        专注于<strong>移动端产品设计</strong>与<strong>设计系统构建</strong>。
+        <br><br>
+        曾主导多个千万级用户产品的设计工作，擅长将复杂业务转化为简洁直观的用户体验。
+        我相信设计的本质是<strong>解决问题</strong>，而不仅仅是美化界面。
+        <br><br>
+        工作之余，我喜欢研究新趋势、探索设计边界，并持续学习前端技术，
+        让设计更好地落地。
+      </div>
+      <div class="about-stats">
+        <div class="stat-item reveal">
+          <div class="stat-number">8+</div>
+          <div class="stat-label">年设计经验</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">项目经历</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-number">10M+</div>
+          <div class="stat-label">用户触达</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-number">3</div>
+          <div class="stat-label">设计大奖</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">工作经历</h2>
+    </div>
+    <div class="experience-timeline">
+      <div class="timeline-line"></div>
+
+      <div class="experience-item reveal">
+        <div class="experience-header">
+          <h3 class="experience-company">字节跳动</h3>
+          <span class="experience-date">2021 — 至今</span>
+        </div>
+        <div class="experience-role">高级UI设计师 / 设计组长</div>
+        <p class="experience-desc">
+          负责抖音电商核心交易链路设计，主导设计系统建设，
+          带领5人设计团队完成多个重点项目的从0到1设计工作。
+        </p>
+      </div>
+
+      <div class="experience-item reveal">
+        <div class="experience-header">
+          <h3 class="experience-company">阿里巴巴</h3>
+          <span class="experience-date">2018 — 2021</span>
+        </div>
+        <div class="experience-role">UI设计师</div>
+        <p class="experience-desc">
+          参与淘宝直播、天猫超市等多个业务线设计工作，
+          负责大型营销活动视觉设计与组件库建设。
+        </p>
+      </div>
+
+      <div class="experience-item reveal">
+        <div class="experience-header">
+          <h3 class="experience-company">网易</h3>
+          <span class="experience-date">2016 — 2018</span>
+        </div>
+        <div class="experience-role">UI设计师</div>
+        <p class="experience-desc">
+          负责网易云音乐、网易新闻客户端等多个产品迭代设计，
+          参与设计规范制定与图标库建设。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">核心能力</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">✦</div>
+        <h3 class="skill-name">产品设计</h3>
+        <p class="skill-desc">
+          从用户研究到原型设计，全流程把控产品体验，
+          擅长将业务目标转化为优秀的设计方案。
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">用户研究</span>
+          <span class="skill-tag">交互设计</span>
+          <span class="skill-tag">原型设计</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">◈</div>
+        <h3 class="skill-name">视觉设计</h3>
+        <p class="skill-desc">
+          精通视觉表现，善于运用色彩、字体、布局等设计元素，
+          创造具有品牌识别度的视觉系统。
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">品牌设计</span>
+          <span class="skill-tag">运营设计</span>
+          <span class="skill-tag">插画</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">◇</div>
+        <h3 class="skill-name">设计系统</h3>
+        <p class="skill-desc">
+          具备大型设计系统构建经验，善于组件化思维，
+          提升团队协作效率与设计一致性。
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">组件库</span>
+          <span class="skill-tag">设计规范</span>
+          <span class="skill-tag">Design Token</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">△</div>
+        <h3 class="skill-name">动效设计</h3>
+        <p class="skill-desc">
+          注重微交互与过渡动画，让界面更有生命力，
+          提升产品的愉悦感与品牌感知。
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">Lottie</span>
+          <span class="skill-tag">AE</span>
+          <span class="skill-tag">Principle</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">□</div>
+        <h3 class="skill-name">前端实现</h3>
+        <p class="skill-desc">
+          具备HTML/CSS/JS基础，能独立完成设计落地，
+          缩短设计与开发之间的沟通成本。
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML/CSS</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">响应式</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">○</div>
+        <h3 class="skill-name">团队协作</h3>
+        <p class="skill-desc">
+          具备设计团队管理经验，善于跨部门沟通，
+          推动设计在业务中发挥更大价值。
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">设计评审</span>
+          <span class="skill-tag">项目管理</span>
+          <span class="skill-tag">知识分享</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="works">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2 class="section-title">作品集</h2>
+    </div>
+    <div class="works-grid">
+      <div class="work-item reveal">
+        <div class="work-visual">
+          <div class="work-overlay">
+            <span class="work-overlay-title">查看详情</span>
+            <span class="work-overlay-cat">App Design</span>
+          </div>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">电商购物体验重构</h3>
+          <span class="work-year">2024</span>
+        </div>
+      </div>
+
+      <div class="work-item reveal">
+        <div class="work-visual" style="background: linear-gradient(135deg, #2a1a3a, #1a1a2a);">
+          <div class="work-overlay">
+            <span class="work-overlay-title">查看详情</span>
+            <span class="work-overlay-cat">Design System</span>
+          </div>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">企业级设计系统</h3>
+          <span class="work-year">2023</span>
+        </div>
+      </div>
+
+      <div class="work-item reveal">
+        <div class="work-visual" style="background: linear-gradient(135deg, #1a2a3a, #0a1a2a);">
+          <div class="work-overlay">
+            <span class="work-overlay-title">查看详情</span>
+            <span class="work-overlay-cat">Web Design</span>
+          </div>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">金融服务平台</h3>
+          <span class="work-year">2023</span>
+        </div>
+      </div>
+
+      <div class="work-item reveal">
+        <div class="work-visual" style="background: linear-gradient(135deg, #3a2a1a, #2a1a0a);">
+          <div class="work-overlay">
+            <span class="work-overlay-title">查看详情</span>
+            <span class="work-overlay-cat">Branding</span>
+          </div>
+        </div>
+        <div class="work-info">
+          <h3 class="work-title">品牌视觉升级</h3>
+          <span class="work-year">2022</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="section-header">
+      <span class="section-number" style="color: var(--accent);">05</span>
+      <h2 class="section-title">联系我</h2>
+    </div>
+    <h3 class="contact-title reveal">开始合作</h3>
+    <a href="mailto:hello@designer.com" class="contact-email reveal">hello@designer.com</a>
+    <div class="contact-socials reveal">
+      <a href="#">Dribbble</a>
+      <a href="#">Behance</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">微信</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2024 All rights reserved</span>
+    <span>Designed with passion</span>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.querySelector('.cursor');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    document.querySelectorAll('a, button, .work-item, .skill-card').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+
+    const revealOnScroll = () => {
+      reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const elementVisible = 150;
+
+        if (elementTop < windowHeight - elementVisible) {
+          el.classList.add('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
