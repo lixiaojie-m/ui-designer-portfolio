@@ -3,131 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UI Designer Portfolio</title>
+  <title>陈文静 Vera — 医疗健康品牌操盘手</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,500;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fafafa;
-      --fg: #0a0a0a;
-      --muted: #6b6b6b;
-      --accent: #ff3d00;
+      --bg: #fefefe;
+      --fg: #1a1a2e;
+      --muted: #6b7280;
+      --accent: #0d9488;
+      --accent2: #f59e0b;
       --card: #ffffff;
-      --border: #e5e5e5;
-      --serif: 'Playfair Display', Georgia, serif;
-      --mono: 'Space Mono', 'Courier New', monospace;
+      --border: #e5e7eb;
+      --serif: 'Noto Serif SC', 'Georgia', serif;
+      --sans: 'DM Sans', -apple-system, sans-serif;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--mono);
+      font-family: var(--sans);
       background: var(--bg);
       color: var(--fg);
       line-height: 1.7;
-      font-size: 14px;
+      font-size: 15px;
       overflow-x: hidden;
     }
 
-    ::selection {
-      background: var(--accent);
-      color: white;
-    }
+    ::selection { background: var(--accent); color: white; }
 
-    /* Custom Cursor */
-    body {
-      cursor: none;
-    }
-
-    .cursor {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--fg);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.15s ease, background 0.15s ease;
-      transform: translate(-50%, -50%);
-    }
-
-    .cursor.hover {
-      transform: translate(-50%, -50%) scale(2);
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
-    /* Navigation */
+    /* === NAV === */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      padding: 2rem 4rem;
+      top: 0; left: 0; right: 0;
+      padding: 1.5rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      background: linear-gradient(to bottom, var(--bg) 60%, transparent);
+      background: rgba(254,254,254,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
     .logo {
       font-family: var(--serif);
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      font-style: italic;
+      letter-spacing: 0.05em;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 3rem;
-      list-style: none;
-    }
+    .logo span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      transition: color 0.3s ease;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      transition: color 0.3s;
       position: relative;
     }
 
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
+      bottom: -6px; left: 0;
+      width: 0; height: 2px;
       background: var(--accent);
-      transition: width 0.3s ease;
+      border-radius: 1px;
+      transition: width 0.3s;
     }
 
-    .nav-links a:hover {
-      color: var(--fg);
-    }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a:hover::after { width: 100%; }
 
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    /* Hero Section */
+    /* === HERO === */
     .hero {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding: 8rem 4rem 4rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      padding: 10rem 4rem 4rem;
       position: relative;
     }
 
@@ -138,58 +98,75 @@
       padding-right: 4rem;
     }
 
-    .hero-label {
-      font-size: 0.65rem;
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
-      color: var(--muted);
+      color: var(--accent);
       margin-bottom: 2rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 40px; height: 2px;
+      background: var(--accent);
     }
 
     .hero-title {
       font-family: var(--serif);
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 400;
-      line-height: 0.95;
-      margin-bottom: 3rem;
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: var(--fg);
     }
 
-    .hero-title span {
-      display: block;
-      opacity: 0;
-      transform: translateY(60px);
-      animation: revealText 0.8s ease forwards;
-    }
-
-    .hero-title span:nth-child(2) {
-      animation-delay: 0.15s;
-      margin-left: 2rem;
-    }
-
-    .hero-title span:nth-child(3) {
-      animation-delay: 0.3s;
-      font-style: italic;
+    .hero-title em {
+      font-style: normal;
       color: var(--accent);
     }
 
-    @keyframes revealText {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .hero-sub {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
     }
 
     .hero-desc {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--muted);
-      max-width: 400px;
+      max-width: 480px;
       line-height: 1.9;
-      opacity: 0;
-      animation: fadeIn 0.8s ease 0.6s forwards;
+      margin-bottom: 2.5rem;
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: var(--fg);
+      color: white;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border-radius: 50px;
+      transition: all 0.3s;
+      width: fit-content;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(13,148,136,0.3);
     }
 
     .hero-right {
@@ -201,865 +178,980 @@
 
     .hero-visual {
       width: 100%;
-      max-width: 500px;
-      aspect-ratio: 3/4;
-      background: #0a0a0a;
+      max-width: 480px;
+      aspect-ratio: 4/5;
       position: relative;
       overflow: hidden;
+      border-radius: 24px;
+      background: linear-gradient(160deg, #f0fdfa 0%, #ccfbf1 30%, #e0f2fe 70%, #f0fdf4 100%);
     }
 
-    .hero-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.9;
-      transition: transform 0.6s ease;
-    }
-
-    .hero-visual:hover img {
-      transform: scale(1.03);
-    }
-
-    .floating-tag {
+    .hero-visual::before {
+      content: '';
       position: absolute;
-      padding: 0.75rem 1.5rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      animation: float 4s ease-in-out infinite;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(13,148,136,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(245,158,11,0.06) 0%, transparent 40%);
     }
 
-    .floating-tag:nth-child(1) {
-      top: 20%;
-      right: -20px;
-      animation-delay: 0s;
+    .hero-keyword {
+      position: absolute;
+      padding: 0.6rem 1.2rem;
+      background: white;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      animation: float 5s ease-in-out infinite;
     }
 
-    .floating-tag:nth-child(2) {
-      bottom: 30%;
-      left: -30px;
-      animation-delay: 1s;
-    }
+    .hero-keyword:nth-child(1) { top: 15%; right: -10px; animation-delay: 0s; }
+    .hero-keyword:nth-child(2) { bottom: 35%; left: -15px; animation-delay: 1.2s; }
+    .hero-keyword:nth-child(3) { bottom: 12%; right: 5%; animation-delay: 2.4s; }
+    .hero-keyword:nth-child(4) { top: 40%; left: 5%; animation-delay: 0.8s; }
+    .hero-keyword:nth-child(5) { top: 65%; right: -5px; animation-delay: 1.6s; }
 
-    .floating-tag:nth-child(3) {
-      bottom: 10%;
-      right: 10%;
-      animation-delay: 2s;
-    }
+    .hero-keyword strong { color: var(--accent); }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
     }
 
-    .scroll-indicator {
+    .scroll-hint {
       position: absolute;
-      bottom: 4rem;
+      bottom: 3rem;
       left: 4rem;
       display: flex;
       align-items: center;
       gap: 1rem;
       font-size: 0.65rem;
-      text-transform: uppercase;
       letter-spacing: 0.2em;
       color: var(--muted);
+      text-transform: uppercase;
     }
 
-    .scroll-line {
-      width: 60px;
-      height: 1px;
+    .scroll-hint .line {
+      width: 50px; height: 1px;
       background: var(--border);
       position: relative;
       overflow: hidden;
     }
 
-    .scroll-line::after {
+    .scroll-hint .line::after {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 100%;
+      width: 15px; height: 100%;
       background: var(--accent);
-      animation: scrollLine 2s ease-in-out infinite;
+      animation: scrollAnim 2s ease infinite;
     }
 
-    @keyframes scrollLine {
-      0% { left: -20px; }
-      100% { left: 100%; }
+    @keyframes scrollAnim {
+      0% { left: -15px; }
+      100% { left: 50px; }
     }
 
-    /* Section Common */
-    section {
-      padding: 8rem 4rem;
-      position: relative;
-    }
+    /* === SECTION COMMON === */
+    section { padding: 7rem 4rem; position: relative; }
 
-    .section-header {
-      margin-bottom: 6rem;
-    }
-
-    .section-number {
+    .section-label {
       font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
       color: var(--accent);
-      letter-spacing: 0.3em;
-      margin-bottom: 1rem;
-      display: block;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--accent);
     }
 
     .section-title {
       font-family: var(--serif);
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 1rem;
     }
 
-    /* About Section */
-    .about {
-      background: var(--fg);
-      color: var(--bg);
+    .section-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 600px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
     }
 
+    /* === ABOUT === */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8rem;
+      gap: 6rem;
     }
 
-    .about-text {
-      font-size: 1.1rem;
+    .about-info-item {
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .about-info-item .label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      min-width: 80px;
+      padding-top: 2px;
+    }
+
+    .about-info-item .value {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .about-bio {
+      font-size: 1rem;
       line-height: 2;
-      opacity: 0.8;
+      color: #374151;
     }
 
-    .about-text strong {
-      color: white;
-      opacity: 1;
+    .about-bio em {
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 600;
     }
 
-    .about-stats {
+    .stat-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
+      gap: 2rem;
+      margin-top: 3rem;
     }
 
-    .stat-item {
-      border-left: 1px solid rgba(255,255,255,0.2);
-      padding-left: 2rem;
+    .stat-card {
+      padding: 2rem;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all 0.3s;
     }
 
-    .stat-number {
+    .stat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(13,148,136,0.1);
+    }
+
+    .stat-num {
       font-family: var(--serif);
-      font-size: 4rem;
-      font-weight: 700;
+      font-size: 2.8rem;
+      font-weight: 900;
       color: var(--accent);
       line-height: 1;
       margin-bottom: 0.5rem;
     }
 
-    .stat-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      opacity: 0.5;
+    .stat-num span {
+      font-size: 1.4rem;
+      font-weight: 600;
     }
 
-    /* Experience Section */
-    .experience-timeline {
-      position: relative;
-    }
-
-    .timeline-line {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: var(--border);
-    }
-
-    .experience-item {
-      padding-left: 4rem;
-      padding-bottom: 4rem;
-      position: relative;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .experience-item:last-child {
-      border-bottom: none;
-    }
-
-    .experience-item::before {
-      content: '';
-      position: absolute;
-      left: -4px;
-      top: 0;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--bg);
-      border: 2px solid var(--accent);
-    }
-
-    .experience-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
-    }
-
-    .experience-company {
-      font-family: var(--serif);
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-
-    .experience-date {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
+    .stat-text {
+      font-size: 0.8rem;
       color: var(--muted);
     }
 
-    .experience-role {
-      font-size: 1rem;
+    /* === EXPERIENCE === */
+    .timeline { position: relative; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--border));
+    }
+
+    .exp-item {
+      padding-left: 3.5rem;
+      padding-bottom: 3.5rem;
+      position: relative;
+    }
+
+    .exp-item:last-child { padding-bottom: 0; }
+
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: -6px; top: 6px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--accent);
+    }
+
+    .exp-date {
+      font-size: 0.72rem;
+      font-weight: 600;
       color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-company {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .exp-role {
+      font-size: 0.9rem;
+      color: var(--muted);
       margin-bottom: 1rem;
     }
 
-    .experience-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      max-width: 600px;
+    .exp-desc {
+      font-size: 0.88rem;
+      color: #4b5563;
+      line-height: 1.8;
+      max-width: 650px;
     }
 
-    /* Skills Section */
-    .skills-grid {
+    /* === ABILITY === */
+    .ability-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
     }
 
-    .skill-card {
-      padding: 3rem;
-      background: var(--card);
+    .ability-card {
+      padding: 2.5rem;
+      background: white;
+      border-radius: 16px;
       border: 1px solid var(--border);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
+      transition: all 0.4s;
     }
 
-    .skill-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-
-    .skill-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .skill-card:hover {
+    .ability-card:hover {
       border-color: var(--accent);
-      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(13,148,136,0.08);
+      transform: translateY(-4px);
     }
 
-    .skill-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .skill-name {
-      font-family: var(--serif);
-      font-size: 1.3rem;
+    .ability-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 1rem;
     }
 
-    .skill-desc {
-      font-size: 0.8rem;
+    .ability-name {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .ability-name-en {
+      font-size: 0.65rem;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .ability-stars {
+      color: var(--accent2);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+    }
+
+    .ability-desc {
+      font-size: 0.85rem;
       color: var(--muted);
       line-height: 1.8;
     }
 
-    .skill-tags {
-      margin-top: 1.5rem;
+    .ability-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
+      margin-top: 1.25rem;
     }
 
-    .skill-tag {
+    .ability-tags span {
       padding: 0.3rem 0.8rem;
-      background: var(--bg);
+      background: #f0fdfa;
+      color: var(--accent);
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    /* === WORKS === */
+    .works-list { display: flex; flex-direction: column; gap: 3rem; }
+
+    .work-case {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
       border: 1px solid var(--border);
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      transition: all 0.4s;
     }
 
-    /* Works Section */
-    .works-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
+    .work-case:hover {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
     }
 
-    .work-item {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .work-visual {
-      aspect-ratio: 16/10;
-      background: #0a0a0a;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .work-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease, filter 0.5s ease;
-    }
-
-    .work-item:hover .work-visual img {
-      transform: scale(1.05);
-      filter: brightness(0.7);
-    }
-
-    .work-visual::before {
-      content: '';
-      position: absolute;
-      inset: 20%;
-      border: 1px solid rgba(255,255,255,0.05);
-      pointer-events: none;
-    }
-
-    .work-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(10,10,10,0.9);
+    .work-case-header {
+      padding: 2rem 2.5rem;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border);
     }
 
-    .work-item:hover .work-overlay {
-      opacity: 1;
-    }
-
-    .work-overlay-title {
+    .work-case-num {
       font-family: var(--serif);
-      font-size: 1.5rem;
-      color: white;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 700;
       margin-bottom: 0.5rem;
     }
 
-    .work-overlay-cat {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--accent);
+    .work-case-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 700;
     }
 
-    .work-info {
-      padding: 1.5rem 0;
+    .work-case-cat {
+      padding: 0.4rem 1rem;
+      background: #f0fdfa;
+      color: var(--accent);
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .work-case-body {
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .work-case-body .desc { font-size: 0.88rem; color: #4b5563; line-height: 1.9; }
+
+    .work-case-body .desc p { margin-bottom: 1rem; }
+
+    .work-case-body .desc strong {
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    .result-box {
+      background: #f0fdfa;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .result-box h4 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .result-item {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed rgba(13,148,136,0.2);
+      font-size: 0.82rem;
     }
 
-    .work-title {
-      font-family: var(--serif);
-      font-size: 1.2rem;
+    .result-item:last-child { border-bottom: none; }
+    .result-item .val { font-weight: 700; color: var(--accent); }
+
+    /* === MEDIA === */
+    .media-scroll {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
     }
 
-    .work-year {
-      font-size: 0.7rem;
-      color: var(--muted);
+    .media-scroll img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: transform 0.3s;
     }
 
-    /* Contact Section */
-    .contact {
-      background: var(--fg);
-      color: var(--bg);
+    .media-scroll img:hover { transform: scale(1.05); }
+
+    /* === DATA === */
+    .data-section { background: var(--fg); color: white; }
+
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .data-card {
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
       text-align: center;
+    }
+
+    .data-card .emoji { font-size: 2rem; margin-bottom: 1rem; }
+
+    .data-card .num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .data-card .num span {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .data-card .label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.75rem;
+    }
+
+    /* === CONTACT === */
+    .contact-section {
+      text-align: center;
+      padding: 8rem 4rem;
     }
 
     .contact-title {
       font-family: var(--serif);
-      font-size: clamp(3rem, 8vw, 6rem);
-      margin-bottom: 2rem;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
     }
 
-    .contact-email {
-      font-size: 1.2rem;
-      color: var(--accent);
-      text-decoration: none;
-      position: relative;
-      display: inline-block;
+    .contact-title span { color: var(--accent); }
+
+    .contact-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 3rem;
     }
 
-    .contact-email::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    .contact-socials {
+    .contact-links {
       display: flex;
       justify-content: center;
       gap: 2rem;
-      margin-top: 4rem;
+      flex-wrap: wrap;
     }
 
-    .contact-socials a {
-      color: var(--muted);
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 50px;
       text-decoration: none;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      transition: color 0.3s ease;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--fg);
+      transition: all 0.3s;
     }
 
-    .contact-socials a:hover {
+    .contact-link:hover {
+      background: var(--accent);
       color: white;
+      border-color: var(--accent);
+      transform: translateY(-2px);
     }
 
-    /* Footer */
+    /* === FOOTER === */
     footer {
       padding: 2rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-top: 1px solid var(--border);
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: var(--muted);
     }
 
-    /* Responsive */
+    /* === RESPONSIVE === */
     @media (max-width: 1024px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 6rem 2rem;
-      }
-
-      .hero-left {
-        padding-right: 0;
-        margin-bottom: 4rem;
-      }
-
-      .hero-right {
-        display: none;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .works-grid {
-        grid-template-columns: 1fr;
-      }
-
-      nav {
-        padding: 1.5rem 2rem;
-      }
-
-      section {
-        padding: 4rem 2rem;
-      }
+      .hero { grid-template-columns: 1fr; padding: 6rem 2rem; }
+      .hero-left { padding-right: 0; margin-bottom: 3rem; }
+      .hero-right { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .ability-grid { grid-template-columns: 1fr; }
+      .work-case-body { grid-template-columns: 1fr; }
+      .data-grid { grid-template-columns: repeat(2, 1fr); }
+      .media-scroll { grid-template-columns: repeat(3, 1fr); }
+      nav { padding: 1.5rem 2rem; }
+      section { padding: 4rem 2rem; }
     }
 
     @media (max-width: 640px) {
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .cursor {
-        display: none;
-      }
-
-      body {
-        cursor: auto;
-      }
+      .nav-links { display: none; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .data-grid { grid-template-columns: 1fr; }
+      .media-scroll { grid-template-columns: repeat(2, 1fr); }
     }
 
-    /* Animation on scroll */
+    /* Reveal */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
     }
 
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
-  <div class="cursor"></div>
 
   <nav>
-    <div class="logo">Portfolio</div>
+    <div class="logo">Vera<span>.</span>陈文静</div>
     <ul class="nav-links">
-      <li><a href="#about">关于</a></li>
+      <li><a href="#about">关于我</a></li>
       <li><a href="#experience">经历</a></li>
-      <li><a href="#skills">能力</a></li>
-      <li><a href="#works">作品</a></li>
+      <li><a href="#ability">核心能力</a></li>
+      <li><a href="#works">案例</a></li>
       <li><a href="#contact">联系</a></li>
     </ul>
   </nav>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
-      <span class="hero-label">UI/UX Designer & Creative Thinker</span>
+      <div class="hero-tag">医疗健康 × 品牌营销</div>
       <h1 class="hero-title">
-        <span>设计</span>
-        <span>创造</span>
-        <span>体验</span>
+        让专业的医疗知识<br>变得<em>有温度</em>
       </h1>
+      <p class="hero-sub">7年深耕医疗健康赛道<br>品牌操盘手 × 品效合一实战派</p>
       <p class="hero-desc">
-        专注于数字产品体验设计，相信好的设计是解决问题的艺术。
-        在功能与美学之间寻找平衡，让每一次交互都充满意义。
+        从0-1构建品牌资产，主导百万级曝光Campaign。专注医疗健康领域品牌战略、新媒体矩阵运营与品效合一整合营销。让复杂的健康营销变得可衡量。
       </p>
+      <a href="#works" class="hero-cta">
+        查看作品案例
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
     <div class="hero-right">
       <div class="hero-visual">
-        <img src="images/hero-visual.svg" alt="UI Designer">
-        <span class="floating-tag">Figma</span>
-        <span class="floating-tag">原型设计</span>
-        <span class="floating-tag">用户研究</span>
+        <span class="hero-keyword">品牌架构重组</span>
+        <span class="hero-keyword">品效合一</span>
+        <span class="hero-keyword">新媒体矩阵</span>
+        <span class="hero-keyword"><strong>70W+</strong> 粉丝增长</span>
+        <span class="hero-keyword"><strong>ROI 1:8.3</strong></span>
       </div>
     </div>
-    <div class="scroll-indicator">
-      <div class="scroll-line"></div>
-      <span>向下滚动探索</span>
+    <div class="scroll-hint">
+      <div class="line"></div>
+      <span>向下探索</span>
     </div>
   </section>
 
-  <section id="about" class="about">
-    <div class="section-header">
-      <span class="section-number">01</span>
-      <h2 class="section-title">关于我</h2>
-    </div>
+  <!-- ABOUT -->
+  <section id="about">
     <div class="about-grid">
-      <div class="about-text reveal">
-        我是一名拥有<strong>8年经验</strong>的UI/UX设计师，
-        专注于<strong>移动端产品设计</strong>与<strong>设计系统构建</strong>。
-        <br><br>
-        曾主导多个千万级用户产品的设计工作，擅长将复杂业务转化为简洁直观的用户体验。
-        我相信设计的本质是<strong>解决问题</strong>，而不仅仅是美化界面。
-        <br><br>
-        工作之余，我喜欢研究新趋势、探索设计边界，并持续学习前端技术，
-        让设计更好地落地。
+      <div class="reveal">
+        <span class="section-label">About</span>
+        <h2 class="section-title">关于我</h2>
+        <div style="margin-bottom: 2rem;">
+          <div class="about-info-item">
+            <span class="label">姓名</span>
+            <span class="value">陈文静 / Vera</span>
+          </div>
+          <div class="about-info-item">
+            <span class="label">院校</span>
+            <span class="value">广东工业大学 · 视觉传达设计</span>
+          </div>
+          <div class="about-info-item">
+            <span class="label">手机</span>
+            <span class="value">188 2624 5682</span>
+          </div>
+          <div class="about-info-item">
+            <span class="label">邮箱</span>
+            <span class="value">243438344@qq.com</span>
+          </div>
+        </div>
+        <div class="about-bio">
+          7年深耕品牌营销，<em>文案是看家本领</em>，精通品牌故事、Slogan、视频脚本、新媒体内容等多类型文案创作。<br><br>
+          全链路品牌操盘手，具备从<em>0-1构建品牌价值体系与视觉体系</em>的能力，擅长新媒体矩阵搭建与运营策划。<br><br>
+          洞察驱动，落地有力。深信"洞察为本，技巧为末"，拥有敏锐的市场与用户洞察力，具备极强的共情能力、审美力和沟通力。<br><br>
+          ENTJ战略家 · 设计出身的美学控 · 共情型文案创意人
+        </div>
       </div>
-      <div class="about-stats">
-        <div class="stat-item reveal">
-          <div class="stat-number">8+</div>
-          <div class="stat-label">年设计经验</div>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-number">50+</div>
-          <div class="stat-label">项目经历</div>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-number">10M+</div>
-          <div class="stat-label">用户触达</div>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-number">3</div>
-          <div class="stat-label">设计大奖</div>
+
+      <div class="reveal">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-num">710<span>W+</span></div>
+            <div class="stat-text">年度总曝光量</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">70<span>W+</span></div>
+            <div class="stat-text">新媒体矩阵粉丝</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">500<span>W+</span></div>
+            <div class="stat-text">单场最高销售额</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">1:8.3</div>
+            <div class="stat-text">单场活动最高ROI</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">50<span>+</span></div>
+            <div class="stat-text">年均公关稿件</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">900<span>+</span></div>
+            <div class="stat-text">年产出内容总量</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">1.6<span>W</span></div>
+            <div class="stat-text">年均线下引流客户</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">100<span>+</span></div>
+            <div class="stat-text">合作医生/KOL</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- EXPERIENCE -->
   <section id="experience">
-    <div class="section-header">
-      <span class="section-number">02</span>
+    <div class="reveal">
+      <span class="section-label">Experience</span>
       <h2 class="section-title">工作经历</h2>
+      <p class="section-desc">7年品牌营销实战经验，从UI设计师成长为品牌操盘手</p>
     </div>
-    <div class="experience-timeline">
-      <div class="timeline-line"></div>
 
-      <div class="experience-item reveal">
-        <div class="experience-header">
-          <h3 class="experience-company">字节跳动</h3>
-          <span class="experience-date">2021 — 至今</span>
-        </div>
-        <div class="experience-role">高级UI设计师 / 设计组长</div>
-        <p class="experience-desc">
-          负责抖音电商核心交易链路设计，主导设计系统建设，
-          带领5人设计团队完成多个重点项目的从0到1设计工作。
+    <div class="timeline">
+      <div class="exp-item reveal">
+        <div class="exp-date">2022.07 — 2025.07</div>
+        <h3 class="exp-company">知贝医疗（均瑶医疗 · 健高儿科）</h3>
+        <div class="exp-role">品牌经理</div>
+        <p class="exp-desc">
+          主导集团品牌架构重组，整合3大子品牌资源。从0-1搭建新媒体矩阵，2年内增长至70W+粉丝，年均产出内容曝光超700W。策划全国性营销事件超30场，其中"长高季"活动单场ROI达1:8.3。建立医疗舆情体系，年均处理风险事件100+条。
         </p>
       </div>
 
-      <div class="experience-item reveal">
-        <div class="experience-header">
-          <h3 class="experience-company">阿里巴巴</h3>
-          <span class="experience-date">2018 — 2021</span>
-        </div>
-        <div class="experience-role">UI设计师</div>
-        <p class="experience-desc">
-          参与淘宝直播、天猫超市等多个业务线设计工作，
-          负责大型营销活动视觉设计与组件库建设。
+      <div class="exp-item reveal">
+        <div class="exp-date">2020.03 — 2022.04</div>
+        <h3 class="exp-company">普邦园林</h3>
+        <div class="exp-role">品牌策划主管</div>
+        <p class="exp-desc">
+          负责品牌策划与运营管理工作，推动品牌体系建设与市场推广活动。
         </p>
       </div>
 
-      <div class="experience-item reveal">
-        <div class="experience-header">
-          <h3 class="experience-company">网易</h3>
-          <span class="experience-date">2016 — 2018</span>
-        </div>
-        <div class="experience-role">UI设计师</div>
-        <p class="experience-desc">
-          负责网易云音乐、网易新闻客户端等多个产品迭代设计，
-          参与设计规范制定与图标库建设。
+      <div class="exp-item reveal">
+        <div class="exp-date">2018.05 — 2020.01</div>
+        <h3 class="exp-company">广州商品交易所</h3>
+        <div class="exp-role">品牌策划专员</div>
+        <p class="exp-desc">
+          参与品牌策划执行工作，积累了扎实的品牌营销基础经验。
+        </p>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-date">2016.10 — 2018.04</div>
+        <h3 class="exp-company">云米科技</h3>
+        <div class="exp-role">UI设计师</div>
+        <p class="exp-desc">
+          互联网家电企业视觉设计工作，培养了对用户体验和视觉美学的敏感度，为后续品牌工作打下美学基础。
         </p>
       </div>
     </div>
   </section>
 
-  <section id="skills">
-    <div class="section-header">
-      <span class="section-number">03</span>
-      <h2 class="section-title">核心能力</h2>
+  <!-- ABILITY -->
+  <section id="ability">
+    <div class="reveal">
+      <span class="section-label">Core Ability</span>
+      <h2 class="section-title">核心能力模型</h2>
+      <p class="section-desc">四大核心能力，覆盖品牌营销全链路</p>
     </div>
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-icon">✦</div>
-        <h3 class="skill-name">产品设计</h3>
-        <p class="skill-desc">
-          从用户研究到原型设计，全流程把控产品体验，
-          擅长将业务目标转化为优秀的设计方案。
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">用户研究</span>
-          <span class="skill-tag">交互设计</span>
-          <span class="skill-tag">原型设计</span>
+
+    <div class="ability-grid">
+      <div class="ability-card reveal">
+        <div class="ability-header">
+          <div>
+            <div class="ability-name">品牌战略</div>
+            <div class="ability-name-en">Strategic Planning</div>
+          </div>
+          <div class="ability-stars">★★★★★</div>
+        </div>
+        <p class="ability-desc">擅长构建品牌金字塔模型、VI体系及传播SOP，主导过集团级品牌架构重组。</p>
+        <div class="ability-tags">
+          <span>品牌定位</span>
+          <span>VI体系</span>
+          <span>品牌架构</span>
+          <span>传播SOP</span>
         </div>
       </div>
 
-      <div class="skill-card reveal">
-        <div class="skill-icon">◈</div>
-        <h3 class="skill-name">视觉设计</h3>
-        <p class="skill-desc">
-          精通视觉表现，善于运用色彩、字体、布局等设计元素，
-          创造具有品牌识别度的视觉系统。
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">品牌设计</span>
-          <span class="skill-tag">运营设计</span>
-          <span class="skill-tag">插画</span>
+      <div class="ability-card reveal">
+        <div class="ability-header">
+          <div>
+            <div class="ability-name">内容创作</div>
+            <div class="ability-name-en">Content Creation</div>
+          </div>
+          <div class="ability-stars">★★★★★</div>
+        </div>
+        <p class="ability-desc">年输出视频脚本500+条、各类稿件900+篇，精通将专业医疗洞察转化为大众传播语言。</p>
+        <div class="ability-tags">
+          <span>视频脚本</span>
+          <span>品牌文案</span>
+          <span>Slogan</span>
+          <span>科普内容</span>
         </div>
       </div>
 
-      <div class="skill-card reveal">
-        <div class="skill-icon">◇</div>
-        <h3 class="skill-name">设计系统</h3>
-        <p class="skill-desc">
-          具备大型设计系统构建经验，善于组件化思维，
-          提升团队协作效率与设计一致性。
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">组件库</span>
-          <span class="skill-tag">设计规范</span>
-          <span class="skill-tag">Design Token</span>
+      <div class="ability-card reveal">
+        <div class="ability-header">
+          <div>
+            <div class="ability-name">增长营销</div>
+            <div class="ability-name-en">Growth Marketing</div>
+          </div>
+          <div class="ability-stars">★★★★☆</div>
+        </div>
+        <p class="ability-desc">精通全域营销（Social+直播+线下），主导活动最高ROI达1:8.3，单场活动销售额500W+。</p>
+        <div class="ability-tags">
+          <span>全域营销</span>
+          <span>品效合一</span>
+          <span>转化设计</span>
+          <span>私域运营</span>
         </div>
       </div>
 
-      <div class="skill-card reveal">
-        <div class="skill-icon">△</div>
-        <h3 class="skill-name">动效设计</h3>
-        <p class="skill-desc">
-          注重微交互与过渡动画，让界面更有生命力，
-          提升产品的愉悦感与品牌感知。
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">Lottie</span>
-          <span class="skill-tag">AE</span>
-          <span class="skill-tag">Principle</span>
+      <div class="ability-card reveal">
+        <div class="ability-header">
+          <div>
+            <div class="ability-name">舆情与风控</div>
+            <div class="ability-name-en">PR & Risk Control</div>
+          </div>
+          <div class="ability-stars">★★★★☆</div>
         </div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon">□</div>
-        <h3 class="skill-name">前端实现</h3>
-        <p class="skill-desc">
-          具备HTML/CSS/JS基础，能独立完成设计落地，
-          缩短设计与开发之间的沟通成本。
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">HTML/CSS</span>
-          <span class="skill-tag">React</span>
-          <span class="skill-tag">响应式</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal">
-        <div class="skill-icon">○</div>
-        <h3 class="skill-name">团队协作</h3>
-        <p class="skill-desc">
-          具备设计团队管理经验，善于跨部门沟通，
-          推动设计在业务中发挥更大价值。
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">设计评审</span>
-          <span class="skill-tag">项目管理</span>
-          <span class="skill-tag">知识分享</span>
+        <p class="ability-desc">建立医疗舆情体系，年均处理风险事件100+条，监测舆情3W+条。</p>
+        <div class="ability-tags">
+          <span>舆情监测</span>
+          <span>危机公关</span>
+          <span>品牌声量</span>
+          <span>风控管理</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- WORKS -->
   <section id="works">
-    <div class="section-header">
-      <span class="section-number">04</span>
-      <h2 class="section-title">作品集</h2>
+    <div class="reveal">
+      <span class="section-label">Works</span>
+      <h2 class="section-title">精选案例</h2>
+      <p class="section-desc">品效合一的品牌营销实战成果</p>
     </div>
-    <div class="works-grid">
-      <div class="work-item reveal">
-        <div class="work-visual">
-          <img src="images/work-ecommerce.svg" alt="电商购物体验重构">
-          <div class="work-overlay">
-            <span class="work-overlay-title">查看详情</span>
-            <span class="work-overlay-cat">App Design</span>
+
+    <div class="works-list">
+      <div class="work-case reveal">
+        <div class="work-case-header">
+          <div>
+            <div class="work-case-num">CASE 01</div>
+            <div class="work-case-title">均瑶医疗集团品牌架构重组</div>
           </div>
+          <span class="work-case-cat">品牌战略</span>
         </div>
-        <div class="work-info">
-          <h3 class="work-title">电商购物体验重构</h3>
-          <span class="work-year">2024</span>
+        <div class="work-case-body">
+          <div class="desc">
+            <p><strong>挑战：</strong>旗下知贝医疗、健高儿科、均瑶儿科品牌定位存在重叠与市场认知模糊。</p>
+            <p><strong>行动：</strong>深入访谈内部团队及外部用户，完成品牌资产盘点。提出"品牌金字塔"模型，明确集团母品牌与各子品牌的职能分工与价值区隔。牵头制定全新VI视觉规范、品牌手册及传播信息SOP。</p>
+            <p><strong>角色：</strong>项目主导人</p>
+          </div>
+          <div class="result-box">
+            <h4>核心成果</h4>
+            <div class="result-item"><span>内部协同效率提升</span><span class="val">~30%</span></div>
+            <div class="result-item"><span>核心标签提及率</span><span class="val">市场第一</span></div>
+            <div class="result-item"><span>品牌管理体系</span><span class="val">集团化标准化</span></div>
+          </div>
         </div>
       </div>
 
-      <div class="work-item reveal">
-        <div class="work-visual">
-          <img src="images/work-designsystem.svg" alt="企业级设计系统">
-          <div class="work-overlay">
-            <span class="work-overlay-title">查看详情</span>
-            <span class="work-overlay-cat">Design System</span>
+      <div class="work-case reveal">
+        <div class="work-case-header">
+          <div>
+            <div class="work-case-num">CASE 02</div>
+            <div class="work-case-title">新媒体矩阵从0到1搭建与运营</div>
           </div>
+          <span class="work-case-cat">新媒体运营</span>
         </div>
-        <div class="work-info">
-          <h3 class="work-title">企业级设计系统</h3>
-          <span class="work-year">2023</span>
+        <div class="work-case-body">
+          <div class="desc">
+            <p><strong>策略：</strong>以公众号深度内容建立专业信任，以抖音/视频号短视频进行轻量科普与品牌曝光，以小红书种草引流，以直播+线下活动完成转化闭环。</p>
+            <p><strong>内容体系：</strong>打造"医生IP"系列（300+视频、60+专访），规划固定品牌栏目，结合季节/社会热点快速响应。</p>
+            <p><strong>覆盖：</strong>均瑶医疗儿科、知贝医疗、健高儿科等多品牌矩阵。</p>
+          </div>
+          <div class="result-box">
+            <h4>核心成果</h4>
+            <div class="result-item"><span>矩阵粉丝增长</span><span class="val">23W → 70W+</span></div>
+            <div class="result-item"><span>内容曝光提升</span><span class="val">+158%</span></div>
+            <div class="result-item"><span>年均线下引流</span><span class="val">2W+ 名客户</span></div>
+          </div>
         </div>
       </div>
 
-      <div class="work-item reveal">
-        <div class="work-visual">
-          <img src="images/work-finance.svg" alt="金融服务平台">
-          <div class="work-overlay">
-            <span class="work-overlay-title">查看详情</span>
-            <span class="work-overlay-cat">Web Design</span>
+      <div class="work-case reveal">
+        <div class="work-case-header">
+          <div>
+            <div class="work-case-num">CASE 03</div>
+            <div class="work-case-title">「健康启航 瑶望未来」公益行</div>
           </div>
+          <span class="work-case-cat">品牌事件营销</span>
         </div>
-        <div class="work-info">
-          <h3 class="work-title">金融服务平台</h3>
-          <span class="work-year">2023</span>
+        <div class="work-case-body">
+          <div class="desc">
+            <p><strong>洞察：</strong>家长对"公益"有天然情感认同。将"消费行为"转化为"公益行为"，赋予用户行为更高的社会价值。</p>
+            <p><strong>策略：</strong>打造"积分公益兑换"模式，联合中国儿童少年基金会，形成"用户行动→积分捐赠→公益落地→品牌传播"闭环。</p>
+            <p><strong>执行：</strong>线上发布公益倡议+攻略长图，线下组织医疗团队赴河北保定举行捐赠仪式暨健康筛查义诊。</p>
+          </div>
+          <div class="result-box">
+            <h4>核心成果</h4>
+            <div class="result-item"><span>会员新增注册</span><span class="val">3,500+人</span></div>
+            <div class="result-item"><span>环比增长</span><span class="val">+40%</span></div>
+            <div class="result-item"><span>活动报道阅读量</span><span class="val">20W+</span></div>
+          </div>
         </div>
       </div>
 
-      <div class="work-item reveal">
-        <div class="work-visual">
-          <img src="images/work-branding.svg" alt="品牌视觉升级">
-          <div class="work-overlay">
-            <span class="work-overlay-title">查看详情</span>
-            <span class="work-overlay-cat">Branding</span>
+      <div class="work-case reveal">
+        <div class="work-case-header">
+          <div>
+            <div class="work-case-num">CASE 04</div>
+            <div class="work-case-title">趣玩春日 · 长高季全国活动</div>
+          </div>
+          <span class="work-case-cat">整合营销</span>
+        </div>
+        <div class="work-case-body">
+          <div class="desc">
+            <p><strong>策略：</strong>策划"科普+互动+优惠"的全域整合活动。线上发起#趣味长高挑战#话题，线下将门诊变为"长高乐园"，实现品效合一。</p>
+            <p><strong>执行：</strong>在全国门诊布置互动装置，举办亲子活动，推出春季成长发育筛查优惠套餐，线上话题引流至线下。</p>
+          </div>
+          <div class="result-box">
+            <h4>核心成果</h4>
+            <div class="result-item"><span>覆盖门诊</span><span class="val">33家</span></div>
+            <div class="result-item"><span>线下参与家庭</span><span class="val">1,000+组</span></div>
+            <div class="result-item"><span>咨询量增长</span><span class="val">+40%</span></div>
           </div>
         </div>
-        <div class="work-info">
-          <h3 class="work-title">品牌视觉升级</h3>
-          <span class="work-year">2022</span>
+      </div>
+
+      <div class="work-case reveal">
+        <div class="work-case-header">
+          <div>
+            <div class="work-case-num">CASE 05</div>
+            <div class="work-case-title">儿童健康管理档案新品推广</div>
+          </div>
+          <span class="work-case-cat">新品营销</span>
+        </div>
+        <div class="work-case-body">
+          <div class="desc">
+            <p><strong>策略：</strong>采用"全域覆盖，精准爆破"打法。通过线上全渠道宣传造势，重点突击私域社群和团购渠道，以低价体验价吸引海量新客。</p>
+            <p><strong>执行：</strong>有赞/美团统一上线套餐，私域妈妈群1v1触达，对接快团团团长分销网络，为门诊提供销售工具包。</p>
+          </div>
+          <div class="result-box">
+            <h4>核心成果</h4>
+            <div class="result-item"><span>新品销量</span><span class="val">500+份</span></div>
+            <div class="result-item"><span>新客到店</span><span class="val">800+名</span></div>
+            <div class="result-item"><span>创造收入</span><span class="val">10W+元</span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="contact">
-    <div class="section-header">
-      <span class="section-number" style="color: var(--accent);">05</span>
-      <h2 class="section-title">联系我</h2>
+  <!-- MEDIA GALLERY -->
+  <section id="media">
+    <div class="reveal">
+      <span class="section-label">Media Gallery</span>
+      <h2 class="section-title">传播内容一览</h2>
+      <p class="section-desc">企业资讯、品牌活动、医生专访、学术交流、科普文章等多维度内容输出</p>
     </div>
-    <h3 class="contact-title reveal">开始合作</h3>
-    <a href="mailto:hello@designer.com" class="contact-email reveal">hello@designer.com</a>
-    <div class="contact-socials reveal">
-      <a href="#">Dribbble</a>
-      <a href="#">Behance</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">微信</a>
+    <div class="media-scroll reveal">
+      <img src="https://picsum.photos/seed/medical1/400/400" alt="品牌活动">
+      <img src="https://picsum.photos/seed/medical2/400/400" alt="医生专访">
+      <img src="https://picsum.photos/seed/medical3/400/400" alt="学术交流">
+      <img src="https://picsum.photos/seed/medical4/400/400" alt="公益活动">
+      <img src="https://picsum.photos/seed/medical5/400/400" alt="品牌传播">
+      <img src="https://picsum.photos/seed/medical6/400/400" alt="线下活动">
+      <img src="https://picsum.photos/seed/medical7/400/400" alt="科普内容">
+      <img src="https://picsum.photos/seed/medical8/400/400" alt="品牌设计">
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="reveal">
+      <span class="section-label">Contact</span>
+      <h2 class="contact-title">期待与您<span>合作</span></h2>
+      <p class="contact-sub">品牌战略 · 新媒体运营 · 品效合一整合营销</p>
+      <div class="contact-links">
+        <a href="tel:18826245682" class="contact-link">📞 188 2624 5682</a>
+        <a href="mailto:243438344@qq.com" class="contact-link">✉️ 243438344@qq.com</a>
+      </div>
     </div>
   </section>
 
   <footer>
-    <span>© 2024 All rights reserved</span>
-    <span>Designed with passion</span>
+    <span>© 2025 陈文静 Vera. All rights reserved.</span>
+    <span>医疗健康 × 品牌营销</span>
   </footer>
 
   <script>
-    // Custom cursor
-    const cursor = document.querySelector('.cursor');
-
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-
-    document.querySelectorAll('a, button, .work-item, .skill-card').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-
     // Reveal on scroll
     const reveals = document.querySelectorAll('.reveal');
-
     const revealOnScroll = () => {
       reveals.forEach(el => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
-        const elementVisible = 150;
-
-        if (elementTop < windowHeight - elementVisible) {
+        if (el.getBoundingClientRect().top < window.innerHeight - 120) {
           el.classList.add('active');
         }
       });
     };
-
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll();
 
-    // Smooth scroll for nav links
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', e => {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
+        document.querySelector(anchor.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
       });
     });
   </script>
